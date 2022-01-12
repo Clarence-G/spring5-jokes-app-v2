@@ -3,6 +3,7 @@ package guru.springframework.jokesapp.controller;
 import guru.springframework.jokesapp.service.GetJokeService;
 import org.springframework.stereotype.Controller;
 
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -16,9 +17,9 @@ public class MainController {
     }
 
     @RequestMapping("/")
-    @ResponseBody
-    public String MainPage(){
+    public String MainPage(Model model){
         String joke = getJokeService.getRandomJoke();
-        return joke;
+        model.addAttribute("joke", joke);
+        return "main";
     }
 }
